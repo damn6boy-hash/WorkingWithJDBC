@@ -1,6 +1,7 @@
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.charset.StandardCharsets;
+import java.io.File;
 import java.io.IOException;
 import java.sql.*;
 import java.util.HashMap;
@@ -166,6 +167,8 @@ public class WorkingWithJDBC {
             xml.append("/>\n");
         }
         xml.append("</report>");
-        Files.writeString(Path.of("report.xml"), xml.toString(), StandardCharsets.UTF_8);
+        String workingDirectory = System.getProperty("user.dir");
+        Path outputPath = new File(workingDirectory, "report.xml").toPath();
+        Files.writeString(outputPath, xml.toString(), StandardCharsets.UTF_8);
     }
 }
